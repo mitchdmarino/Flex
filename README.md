@@ -1,4 +1,4 @@
-# Project 4 Pitch
+# Project 4 Pitch: FLEX 
 
 
 ## App Description
@@ -12,6 +12,7 @@ Users will also have a choice to save workout templates and make these public. U
 * Python
 * Django
 * Pytest
+* Seaborn? (or other python data visualizaiton tool)
 
 
 ## Questions
@@ -74,6 +75,19 @@ Any potential roadblocks you think you might run into?
 
 1. A user can see data showing their progress (weight, personal records, activity, etc)
 
+## RESTful Routing Chart
+
+| VERB | URL pattern | Action \(CRUD\) | Description |
+| :--- | :--- | :--- | :--- |
+| GET | /routines | Read   | shows list of all workout routines |
+| POST | /routines | Create  | creates a new workout routine |
+| PUT | /routines/:id | Update | updates the data for a specific routine|
+| DELETE | /routines/:id | Destroy | deletes the routine with the specified id|
+| GET | /workouts | Read   | shows list of all workout workouts |
+| GET | /workouts/:id | Read   | shows list of specific workout  |
+| POST | /workouts | Create  | creates a new workout |
+| PUT | /workouts/:id | Update | updates the data for a specific workout|
+| DELETE | /workouts/:id | Destroy | deletes the workout with the specified id|
 
 ## Sprints
 
