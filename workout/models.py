@@ -28,6 +28,6 @@ class Workout(models.Model):
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
-    routine = models.ForeignKey('Routine', on_delete=models.CASCADE)
+    routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='exercises')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

@@ -1,0 +1,15 @@
+<html>
+    <body>
+        {%for routine in routines%}
+            <li>
+                <h1>{{ routine.name }}</h1>
+                {%for exercise in routine.exercises.all%}
+                    <li>
+                        {{ exercise.name }}
+                    </li>
+                {%endfor%}
+            </li>
+        {%endfor%}
+        
+    </body>
+</html> 

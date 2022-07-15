@@ -2,8 +2,10 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
-from .models import Routine
+from .models import Routine, Exercise, Workout
 
 def index(request):
-    print("ROUTINES", Routine.objects.all())
-    return HttpResponse('<h1>Your workout routines</h1>')
+    routines = Routine.objects.all()
+    print(routines)
+    exercises = routines[0].exercises.all()
+    return render(request, 'workout/index.html', {'routines': routines, 'exercises':exercises })
