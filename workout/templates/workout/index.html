@@ -1,15 +1,18 @@
-<html>
-    <body>
-        {%for routine in routines%}
-            <li>
-                <h1>{{ routine.name }}</h1>
-                {%for exercise in routine.exercises.all%}
-                    <li>
-                        {{ exercise.name }}
-                    </li>
-                {%endfor%}
-            </li>
-        {%endfor%}
-        
-    </body>
-</html> 
+{% extends 'home.html' %}
+{% block content %}
+<h2>
+    Workout Routines
+    <a href="routines/add">(+)</a>
+</h2>
+            {%for routine in routines%}
+                <li>
+                    <a href="routines/{{routine.id}}/edit">{{ routine.name }}</a>
+                    {%for exercise in routine.exercises.all%}
+                        <li>
+                            {{ exercise.name }}
+                        </li>
+                    {%endfor%}
+                </li>
+                <a href="routines/{{ routine.id }}/delete">X</a>
+            {%endfor%}
+{% endblock %}

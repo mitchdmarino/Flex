@@ -1,4 +1,6 @@
-<html>
+{% extends 'home.html' %}
+{% block content %}
+
     <div>
         <h2>Login</h2>
         <form method="POST" action="{% url 'profile' %}">
@@ -10,4 +12,5 @@
             <button type="submit">Save</button>
         </form>
     </div>
-</html>
+
+{% endblock %}

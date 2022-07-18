@@ -10,8 +10,11 @@ class Routine(models.Model):
         choices=[
             ('Cardio', 'Cardio'),
             ('Strength', 'Strength'),
-        ]
+        ],
+        default='Strength'
     )
+    details = models.CharField(max_length=250)
+    public = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self): 
@@ -24,10 +27,17 @@ class Workout(models.Model):
     completed = models.BooleanField(default=False)    
     routine = models.ForeignKey('Routine',on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    
+    
 
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
+    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True )
+    reps = models.IntegerField()
+    sets = models.IntegerField(blank=True)
+    distance = models.IntegerField(blank=True)
+    notes = models.CharField(max_length=250, default='')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='exercises')
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     
