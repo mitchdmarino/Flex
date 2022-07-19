@@ -1,8 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
         <h1 class="text-center my-4">{{routine.name}}</h1>
-        <a href="edit"><button>Edit</button></a>    
-        <a href="routines/{{ routine.id }}/delete"><button>Delete</button></a>    
+        <h3 class="">{{routine.type}} Activity
+            {%if routine.type == 'Cardio'%}
+            🏃🏃‍♀️
+            {%else%}
+            💪
+            {%endif%}
+        </h3>
+        <a href="edit"><button class="btn">Edit</button></a>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Delete
+          </button>
+          <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Delete Routine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <p>Are you sure you want to delete the <span class='text-primary'>{{routine.name}}</span> workout routine?</p>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+                <a href="delete"><button class="btn btn-danger">Delete</button></a>
+                </div>
+            </div>
+            </div>
+        </div>
+            
         <h3>Exercises</h3>
         <div class='mx-auto'>
         {%for exercise in routine.exercises.all%}
