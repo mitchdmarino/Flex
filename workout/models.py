@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 
@@ -30,6 +31,10 @@ class Workout(models.Model):
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='routine')
     notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    @property
+    def get_html_url(self):
+        url = reverse('edit_workout', args=(self.id,))
+        return f'<a href="{url}"> {self.routine.name} </a>'
     class Meta:
         verbose_name = u'Scheduling'
         verbose_name_plural = u'Scheduling'

@@ -1,15 +1,18 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, HttpResponseRedirect
 from .forms import RoutineForm, WorkoutForm
-
+from datetime import datetime, timedelta, date
 from django.forms import inlineformset_factory
-
+from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.views import generic
 
+from django.utils.safestring import mark_safe
+import calendar
 # from utils import Calendar
 # Create your views here.
 from django.http import HttpResponse
-from .models import Routine, Exercise, Workout
+from .models import *
 
 @login_required(login_url='/login/')
 def index(request):
@@ -86,15 +89,9 @@ def routine_delete(request, pk):
 #     context['next_month'] = next_month(d)
     
 #     return context
-def schedule(request):
-    return HttpResponse('hello')
-from datetime import datetime
-from django.shortcuts import render
-from django.http import HttpResponse
-from django.views import generic
-from django.utils.safestring import mark_safe
 
-from .models import *
+
+
 from .utils import Calendar
 
 class CalendarView(generic.ListView):
@@ -105,18 +102,49 @@ class CalendarView(generic.ListView):
         context = super().get_context_data(**kwargs)
 
         # use today's date for the calendar
-        d = get_date(self.request.GET.get('day', None))
+        d = get_date(self.request.GET.get('month', None))
+        
 
         # Instantiate our calendar class with today's year and date
         cal = Calendar(d.year, d.month)
 
         # Call the formatmonth method, which returns our calendar as a table
+
         html_cal = cal.formatmonth(withyear=True, user=self.request.user)
         context['calendar'] = mark_safe(html_cal)
+        context['prev_month'] = prev_month(d)
+        context['next_month'] = next_month(d)
         return context
+
 
 def get_date(req_day):
     if req_day:
         year, month = (int(x) for x in req_day.split('-'))
         return date(year, month, day=1)
     return datetime.today()
+
+def prev_month(d):
+    first = d.replace(day=1)
+    prev_month = first - timedelta(days=1)
+    month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
+    return month
+
+def next_month(d):
+    days_in_month = calendar.monthrange(d.year, d.month)[1]
+    last = d.replace(day=days_in_month)
+    next_month = last + timedelta(days=1)
+    month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
+    return month
+
+def workout(request, pk=None):
+    instance = Workout()
+    if pk:
+        instance = get_object_or_404(Workout, pk=pk)
+    else: 
+        instance = Workout()
+    form = WorkoutForm(request.POST or None, instance=instance)
+    form.instance.user = request.user
+    if request.POST and form.is_valid():
+        form.save()
+        return redirect('calendar')
+    return render(request, 'workout/event.html', {'form': form})
