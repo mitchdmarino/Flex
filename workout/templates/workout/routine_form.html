@@ -1,13 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<section>
-    <h1>{{ header }}</h1>
+<a href="{% url 'workout' %}"><button class='ms-2 my-2 btn btn-light mx-auto'>Back</button></a>
+<section class="bg-secondary mx-auto rounded px-5 py-2 mt-5 text-white fs-5" style="width:500px;">
+    <h1 class='fs-2'>{{ header }}</h1>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        Exercises:
+        {% if exerciseForm%}
+        <p>Add an Exercise:</p>
+        {% endif %}
+        <div class="fs-6">
         {{exerciseForm.as_p}}
-        <button type="submit">Save</button>
+        </div>
+        <button class='btn btn-dark mx-auto' type="submit">Save</button>
+        
+        
     </form>
+    
+    
 </section>
 {% endblock %}
