@@ -7,6 +7,7 @@
     <div class="row">
         <div class="col border border-secondary border-2 d-flex align-items-center justify-content-center">
           <p class="fs-3 text-center  mb-0 py-2">Name</p>
+          <a href="routines/add"><button class='btn btn-secondary ms-2 my-2'>+</button></a>
         </div>
         <div class="col border border-secondary border-2 ">
           <p class="fs-3 text-center mb-0 py-2">Type</p>
@@ -16,9 +17,10 @@
         </div>
     </div>
     {%for routine in routines%}   
-    <div class="row ">
+    <a class="text-black text-decoration-none"href="routines/{{routine.id}}">
+    <div class="row  ">
       <div class="col border border-secondary border-2  d-flex align-items-center justify-content-center">
-        <a class="fs-5 mb-0 py-2" href="routines/{{routine.id}}">{{routine.name}}</a>
+        <p class="fs-5 mb-0 py-2" >{{routine.name}}</p>
       </div>
       <div class="col border border-secondary border-2  d-flex align-items-center justify-content-center ">
         <p class="fs-5 mb-0 py-2">{{routine.type}}</p>
@@ -27,9 +29,10 @@
         <p >{{routine.details}}</p>
       </div>
     </div>
+    </a>
     {%endfor%}
     
 </div>
-<a href="routines/add"><button>Add Routine</button></a>
+
             
 {% endblock %}
