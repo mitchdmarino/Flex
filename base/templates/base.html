@@ -21,9 +21,10 @@
                 <span class="navbar-toggler-icon "></span>
               </button>
               <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                <ul class="navbar-nav  ms-auto ">
+                <ul class="navbar-nav  ms-auto ">                  
+                  {% if user.is_authenticated %}
                   <li class="nav-item px-4 fs-5">
-                    <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+                    <a class="nav-link active text-white" aria-current="page" href="{% url 'dashboard' %}">Dashboard</a>
                   </li>
                   <li class="nav-item px-4 fs-5">
                     <a class="nav-link active text-white" aria-current="page" href="{% url 'workout' %}">My Workouts</a>
@@ -32,8 +33,6 @@
                   <li class="px-4 fs-5 nav-item">
                     <a class="nav-link active text-white" href="{% url 'calendar' %}">Calendar</a>
                   </li>
-                  
-                  {% if user.is_authenticated %}
                     <li class="nav-item px-4 fs-5 "><a href="{% url  'profile' %}" class="nav-link  text-white active ">Profile</a></li>
                     <li class="nav-item px-4 fs-5"><a href="{% url 'logout' %}" class="text-white nav-link active">Logout</a></li>
                     
