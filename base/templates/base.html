@@ -7,23 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flex</title>
     <link rel="stylesheet" type="text/css" href="{% static 'workout/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'base/css/bootstrap.css' %}">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
 <body>
     <header>
-        <nav>
-            <ul>
-                <li><a href="{% url 'workout' %}">All Workouts</a></li>
-                {% if user.is_authenticated %}
-                    <li><a href="{% url  'profile' %}">Profile</a></li>
-                    {% comment %} <li><a href="{% url 'routine_create_form' %}">New Workout Routine</a></li> {% endcomment %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                {% else %}
-                    <li><a href="{% url 'signup_form' %}">Signup</a></li>
-                    <li><a href="{% url 'login_page' %}">Login</a></li>
+    
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="#">FLEX</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav  ms-auto ">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'workout' %}">My Workouts</a>
+                  </li>
+                
+                  <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'calendar' %}">Calendar</a>
+                  </li>
+                  
+                  {% if user.is_authenticated %}
+                    <li class="nav-item "><a href="{% url  'profile' %}" class="nav-link active ">Profile</a></li>
+                    <li class="nav-item "><a href="{% url 'logout' %}" class="nav-link active">Logout</a></li>
+                    
+                    {% else %}
+                    <li class="nav-item "><a href="{% url 'login_page' %}" class="nav-link active">Login</a></li>
+                    <li class="nav-item "><a href="{% url 'signup_form' %}" class="nav-link active">Signup</a></li>
                 {% endif %}
-
-            </ul>
-        </nav>
+                </ul>
+              </div>
+            </div>
+          </nav>
     </header>
     <main>
         {% block content %}
