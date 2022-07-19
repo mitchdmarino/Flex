@@ -1,7 +1,7 @@
 from django import forms
 
 
-from .models import Workout, Routine, Exercise
+from .models import *
 
 class RoutineForm(forms.ModelForm):
     class Meta:

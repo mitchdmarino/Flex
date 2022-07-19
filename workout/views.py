@@ -6,6 +6,7 @@ from django.forms import inlineformset_factory
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.views import generic
+from django import forms
 
 from django.utils.safestring import mark_safe
 import calendar
@@ -136,13 +137,18 @@ def next_month(d):
     month = 'month=' + str(next_month.year) + '-' + str(next_month.month)
     return month
 
+@login_required(login_url='/login/')
 def workout(request, pk=None):
     instance = Workout()
     if pk:
         instance = get_object_or_404(Workout, pk=pk)
+        # validate that the user has permission to edit this Workout
+        if instance.user.id != request.user.id:
+            return redirect('calendar')
     else: 
         instance = Workout()
     form = WorkoutForm(request.POST or None, instance=instance)
+    form.fields['routine'] = forms.ModelChoiceField(Routine.objects.filter(user__id = request.user.id))
     form.instance.user = request.user
     if request.POST and form.is_valid():
         form.save()
