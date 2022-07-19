@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -23,10 +24,15 @@ class Routine(models.Model):
 
 # Workout class, is used to schedule a routine for a specific time
 class Workout(models.Model):
-    date = models.DateField()
-    completed = models.BooleanField(default=False)    
-    routine = models.ForeignKey('Routine',on_delete=models.CASCADE)
+    day = models.DateField(u'Day of the event', help_text=u'Day of the event')
+    start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
+    end_time = models.TimeField(u'Final time', help_text=u'Final time')
+    routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='routine')
+    notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    class Meta:
+        verbose_name = u'Scheduling'
+        verbose_name_plural = u'Scheduling'
     
     
 

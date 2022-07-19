@@ -10,7 +10,7 @@ class RoutineForm(forms.ModelForm):
 class WorkoutForm(forms.ModelForm):
     class Meta:
         model = Workout
-        fields = ['date']
+        fields = ['day']
 
 
 
