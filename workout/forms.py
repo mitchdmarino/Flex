@@ -12,7 +12,7 @@ class WorkoutForm(forms.ModelForm):
         model = Workout
         fields = ['date']
 
-ExerciseInlineFormSet = inlineformset_factory(Exercise, Routine, fields =('name', 'time', 'reps', 'sets', 'distance', 'notes'))
+
 
         
 
