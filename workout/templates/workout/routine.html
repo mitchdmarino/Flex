@@ -1,0 +1,19 @@
+{% extends 'home.html' %}
+{% block content %}
+    <li>
+        <a href="{{routine.id}}/edit">{{ routine.name }}</a>
+        <button>
+            {% comment %} this button will show the form to add exercises {% endcomment %}
+            Add Exercise
+        </button>
+        <form>
+        </form>
+    
+        {%for exercise in routine.exercises.all%}
+            <li>
+                {{ exercise.name }}
+            </li>
+        {%endfor%}
+    </li>
+    <a href="routines/{{ routine.id }}/delete">X</a>
+{% endblock %}
