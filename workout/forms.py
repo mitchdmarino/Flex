@@ -11,9 +11,20 @@ class RoutineForm(forms.ModelForm):
             'name': forms.TextInput(attrs={
                 'class':'form-control form-control-md  ', 
                 'style': 'width: 300px;',
-                'placeholder':'Name'
+                
+            }), 
+            'type': forms.Select(attrs={
+                'class':'form-select  ', 
+                'style': 'width: 300px;',
+                
+            }), 
+            'details': forms.Textarea(attrs={
+                'class':'form-control   ', 
+                'style': 'width: 400px; height: 100px;',
+                
+            }), 
 
-            })
+
         }
 
 class WorkoutForm(forms.ModelForm):
