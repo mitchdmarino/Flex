@@ -7,6 +7,14 @@ class RoutineForm(forms.ModelForm):
     class Meta:
         model = Routine
         fields = ['name', 'type', 'details', 'public']
+        widgets = {
+            'name': forms.TextInput(attrs={
+                'class':'form-control form-control-md  ', 
+                'style': 'width: 300px;',
+                'placeholder':'Name'
+
+            })
+        }
 
 class WorkoutForm(forms.ModelForm):
     class Meta:
