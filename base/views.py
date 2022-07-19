@@ -7,6 +7,9 @@ from django.contrib.auth import authenticate, login, logout
 def login_page(request):
     return render(request, 'login_form.html')
 
+def index(request):
+    return render(request, 'home.html')
+
 # add after 'login_page'
 def profile_show(request):
     if request.method == 'POST':

@@ -8,38 +8,38 @@
     <title>Flex</title>
     <link rel="stylesheet" type="text/css" href="{% static 'workout/styles.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'base/css/bootstrap.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
     <!-- JavaScript Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </head>
-<body>
+<body class="bg-primary">
     <header>
-    
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-              <a class="navbar-brand" href="#">FLEX</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+        <nav class="navbar navbar-expand-lg bg-secondary p-2 ">
+            <div class="container-fluid ">
+              <a class="navbar-brand text-white fs-2 ms-3" href="{% url 'home' %}">Flex</a>
+              <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
               </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <div class="collapse navbar-collapse " id="navbarSupportedContent">
                 <ul class="navbar-nav  ms-auto ">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                  <li class="nav-item px-4 fs-5">
+                    <a class="nav-link active text-white" aria-current="page" href="{% url 'home' %}">Home</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'workout' %}">My Workouts</a>
+                  <li class="nav-item px-4 fs-5">
+                    <a class="nav-link active text-white" aria-current="page" href="{% url 'workout' %}">My Workouts</a>
                   </li>
                 
-                  <li class="nav-item">
-                    <a class="nav-link active" href="{% url 'calendar' %}">Calendar</a>
+                  <li class="px-4 fs-5 nav-item">
+                    <a class="nav-link active text-white" href="{% url 'calendar' %}">Calendar</a>
                   </li>
                   
                   {% if user.is_authenticated %}
-                    <li class="nav-item "><a href="{% url  'profile' %}" class="nav-link active ">Profile</a></li>
-                    <li class="nav-item "><a href="{% url 'logout' %}" class="nav-link active">Logout</a></li>
+                    <li class="nav-item px-4 fs-5 "><a href="{% url  'profile' %}" class="nav-link  text-white active ">Profile</a></li>
+                    <li class="nav-item px-4 fs-5"><a href="{% url 'logout' %}" class="text-white nav-link active">Logout</a></li>
                     
                     {% else %}
-                    <li class="nav-item "><a href="{% url 'login_page' %}" class="nav-link active">Login</a></li>
-                    <li class="nav-item "><a href="{% url 'signup_form' %}" class="nav-link active">Signup</a></li>
+                    <li class="nav-item px-4 fs-5"><a href="{% url 'login_page' %}" class="text-white nav-link active">Login</a></li>
+                    <li class="nav-item px-4 fs-5"><a href="{% url 'signup_form' %}" class="text-white nav-link active">Signup</a></li>
                 {% endif %}
                 </ul>
               </div>
