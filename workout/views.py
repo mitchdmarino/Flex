@@ -36,6 +36,8 @@ def routine_create(request):
 
 def routine_details(request, pk):
     routine = Routine.objects.get(pk=pk)
+    if routine.user.id != request.user.id:
+            return redirect('workout')
     context = {
         'routine': routine
     }
