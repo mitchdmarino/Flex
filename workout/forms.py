@@ -30,6 +30,7 @@ class WorkoutForm(forms.ModelForm):
         model = Workout
         widgets = {
             'start_time': forms.TimeInput(attrs={'type': 'time'}, format='%H:%M'),
+            'day': forms.DateInput(attrs={'type':'date'})
         }
         fields = ['day','start_time' ,'routine', 'notes']
 
