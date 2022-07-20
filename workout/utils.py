@@ -36,7 +36,7 @@ class Calendar(HTMLCalendar):
 	def formatmonth(self, user, withyear=True):
 		workouts = Workout.objects.filter(day__year=self.year, day__month=self.month)
 
-		cal = f'<table border="0" cellpadding="0" cellspacing="0" class="calendar mx-auto">\n'
+		cal = f'<table border="0" style="background-color: #E5FCFF;" cellpadding="0" cellspacing="0" class="calendar mx-auto">\n'
 		cal += f'{self.formatmonthname(self.year, self.month, withyear=withyear)}\n'
 		cal += f'{self.formatweekheader()}\n'
 		for week in self.monthdays2calendar(self.year, self.month):
