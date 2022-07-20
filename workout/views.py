@@ -249,6 +249,13 @@ def complete_workout(request, pk):
     workout.save()
     return redirect('calendar')
 
+def delete_workout(request, pk):
+    workout = Workout.objects.get(pk=pk)
+    if workout.user.id != request.user.id:
+        return redirect('calendar')
+    workout.delete()
+    return redirect('calendar')
+
 def progress(request):
     workouts = Workout.objects.filter(user_id=request.user.id , complete=True)
     count = len(workouts)

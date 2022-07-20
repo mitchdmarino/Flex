@@ -2,8 +2,16 @@
 
 {% block content %}
 
+{% if workout.complete %}
+<p class="fs-5 text-center p-3">GREAT JOB! You completed this workout. 
+{%else%}
 <p class="fs-3 text-center pt-5">You are scheduled to complete in {{days}} days. </p>
+<p class="fs-5 text-center p-3">Scheduled for: {{workout.day}} at {{workout.start_time}}
 <a href="{% url 'complete_workout' workout.id%}" class="d-block w-50 mx-auto text-decoration-none"><button class="btn btn-success d-block mx-auto text-white text-decoration-none">Complete this workout</button></a>
+{%endif%}
+<button type="button" class="btn btn-danger d-inline-block text-right me-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Delete
+  </button>
 
 <div class="">
     <h1 class="text-center my-4">{{routine.name}}</h1>
@@ -40,6 +48,26 @@
         
     {%endfor%}
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Delete Workout Activity</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p>Are you sure you want to delete this activity?</p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
+            <a href="delete"><button class="btn btn-danger">Delete</button></a>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
 
 </div>
 
