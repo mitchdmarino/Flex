@@ -1,6 +1,13 @@
 # Flex: A workout companion
 Create, Schedule, and Complete Workouts while tracking your fitness information
 ![](./wireframes/app_calendar.png)
+
+## Description 
+
+Flex is a workout app where users can add their workouts. Workouts can be added in different categories (cardio or strength). Workouts can be scheduled and completed, and the user will be able to see a calendar of all past and future workouts. Users will need to create accounts and their information/workouts will require authorization to access. 
+
+Users will also have a choice to save workout templates and make these public. Users will be able to save public templates and schedule/complete them. User will be able track their progress and statistics (such as weight, BMI, personal records) over time
+
 ## Technologies
 
 * Django

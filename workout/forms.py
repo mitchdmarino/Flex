@@ -21,7 +21,6 @@ class RoutineForm(forms.ModelForm):
             'details': forms.Textarea(attrs={
                 'class':'form-control   ', 
                 'style': 'width: 400px; height: 100px;',
-                
             }), 
         }
 

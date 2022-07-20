@@ -57,5 +57,8 @@ def test_complete_workout(new_user1):
     routine = new_user1.routine_set.get(name="5k run")
     activity = Workout.objects.create(user=new_user1, routine = routine, day="2022-07-07", start_time="12:26:00")
     activity.complete = True
-    assert activity.complete
+    assert not activity.complete
+
+
+
 
