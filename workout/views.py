@@ -50,7 +50,7 @@ def routine_details(request, pk):
 def routine_edit(request, pk):
     routine = Routine.objects.get(pk=pk)
     if routine.user_id == request.user.id:
-        ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time', 'reps', 'sets', 'distance', 'notes'), extra=1)
+        ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time', 'weight','reps', 'sets', 'distance', 'notes'), extra=1)
         if request.method == 'POST':
             form = RoutineForm(request.POST, instance=routine)
             formset = ExerciseFormset(request.POST, instance=routine)

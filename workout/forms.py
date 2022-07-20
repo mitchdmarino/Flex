@@ -23,8 +23,6 @@ class RoutineForm(forms.ModelForm):
                 'style': 'width: 400px; height: 100px;',
                 
             }), 
-
-
         }
 
 class WorkoutForm(forms.ModelForm):

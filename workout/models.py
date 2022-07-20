@@ -29,7 +29,7 @@ class Workout(models.Model):
     start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
     end_time = models.TimeField(u'Final time', help_text=u'Final time')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='routine')
-    notes = models.TextField(u'Textual Notes', help_text=u'Textual Notes', blank=True, null=True)
+    notes = models.TextField(u'Textual Notes', help_text=u'Notes', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     @property
     def get_html_url(self):
@@ -44,13 +44,13 @@ class Workout(models.Model):
 
 class Exercise(models.Model):
     name = models.CharField(max_length=100)
-    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True )
-    reps = models.IntegerField(blank=True)
-    sets = models.IntegerField(blank=True)
-    distance = models.IntegerField(blank=True)
+    weight = models.IntegerField(blank=True, default=0)
+    sets = models.IntegerField(blank=True ,default=0)
+    reps = models.IntegerField(blank=True ,default=0)
+    distance = models.IntegerField(blank=True ,default=0)
+    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True )
     notes = models.CharField(max_length=250, default='')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='exercises')
-   
-    
+
     def __str__(self): 
         return self.name

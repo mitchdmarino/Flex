@@ -8,7 +8,8 @@
             💪
             {%endif%}
         </h3>
-        <a href="edit"><button class="btn">Edit</button></a>
+        <p>{{routine.details}}</p>
+        <a href="edit"><button class="btn btn-info">Edit</button></a>
         <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
             Delete
           </button>
@@ -21,7 +22,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <p>Are you sure you want to delete the <span class='text-primary'>{{routine.name}}</span> workout routine?</p>
+                <p>Are you sure you want to delete the <span class='text-secondary'>{{routine.name}}</span> workout routine?</p>
                 </div>
                 <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Go back</button>
