@@ -225,3 +225,8 @@ def complete_workout(request, pk):
     workout.complete = True
     workout.save()
     return redirect('calendar')
+
+def progress(request):
+    workouts = Workout.objects.filter(user_id=request.user.id , complete=True)
+    count = len(workouts)
+    return render(request, 'workout/goals.html', {'count':count})

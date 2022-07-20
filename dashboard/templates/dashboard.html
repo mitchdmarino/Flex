@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>Dashboard</h1>
-<h2>Workouts</h2>
-<h2>Calendar</h2>
-<h2>Goals</h2>
-<h2>Profile</h2>
+<a href="{% url 'workout' %}"class='rounded-pill border-2 border-black border d-flex align-items-center justify-content-center'style="width:300px;height:100px"><h2 >Workouts</h2></a>
+<a href="{% url 'calendar' %}" class='rounded-pill border-2 border-black border d-flex align-items-center justify-content-center'style="width:300px;height:100px"><h2 >Calendar</h2></a>
+<a href="{% url 'goals' %}" class='rounded-pill border-2 border-black border d-flex align-items-center justify-content-center'style="width:300px;height:100px"><h2 >Goals</h2></a>
+<a href="{% url 'profile' %}" class='rounded-pill border-2 border-black border d-flex align-items-center justify-content-center'style="width:300px;height:100px"><h2 >Profile</h2></a>
+
+
+
 {% endblock %}
