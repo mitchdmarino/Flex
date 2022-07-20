@@ -27,7 +27,6 @@ class Routine(models.Model):
 class Workout(models.Model):
     day = models.DateField(u'Day of the event', help_text=u'Day of the event')
     start_time = models.TimeField(u'Starting time', help_text=u'Starting time')
-    end_time = models.TimeField(u'Final time', help_text=u'Final time')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='routine')
     notes = models.TextField(u'Textual Notes', help_text=u'Notes', blank=True, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -48,7 +47,7 @@ class Exercise(models.Model):
     sets = models.IntegerField(blank=True ,default=0)
     reps = models.IntegerField(blank=True ,default=0)
     distance = models.IntegerField(blank=True ,default=0)
-    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
+    time = models.TextField(blank=True, null=True)
     notes = models.CharField(max_length=250, default='')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='exercises')
 

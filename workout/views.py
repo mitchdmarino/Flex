@@ -77,7 +77,7 @@ def routine_edit(request, pk):
                     'style': 'width: 150px;',
                     
                 }), 
-                'time': forms.TimeInput(attrs={
+                'time': forms.TextInput(attrs={
                     'class':'form-control  ', 
                     'style': 'width: 300px;',
                     'placeholder':'mm:ss',

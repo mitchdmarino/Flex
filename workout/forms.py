@@ -30,9 +30,8 @@ class WorkoutForm(forms.ModelForm):
         model = Workout
         widgets = {
             'start_time': forms.TimeInput(attrs={'type': 'time'}, format='%H:%M'),
-            'end_time': forms.TimeInput(attrs={'type': 'time'}, format='%H:%M'),
         }
-        fields = ['day','start_time', 'end_time' ,'routine', 'notes']
+        fields = ['day','start_time' ,'routine', 'notes']
 
 
     def __init__(self, *args, **kwargs):
