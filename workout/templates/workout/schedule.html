@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="clearfix">
-	<a class="btn btn-info left" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
-	<a class="btn btn-info right" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
+<div class="m-4 w-75 mx-auto d-flex flex-wrap justify-content-center">
+	<a class="btn btn-dark left p-2 m-2" href="{% url 'calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info mx-auto p-2 m-2 "style="width:200px" href="{% url 'schedule_new_workout' %}"> Schedule New Workout </a>
+	<a class="btn btn-dark right p-2 m-2" href="{% url 'calendar' %}?{{ next_month }}"> Next Month </a>
 	
 </div>
+
+
 {{ calendar }}
-<br></br><a class="btn btn-info right" href="{% url 'schedule_new_workout' %}"> Add Workout </a>
 
 {% endblock %}
 
