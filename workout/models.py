@@ -34,7 +34,7 @@ class Workout(models.Model):
     @property
     def get_html_url(self):
         url = reverse('workout_details', args=(self.id,))
-        return f'<a style="color:black"href="{url}"> {self.routine.name} </a>'
+        return f'<a style="color:black ;text-decoration: none "href="{url}"> {self.routine.name} </a>'
     class Meta:
         verbose_name = u'Scheduling'
         verbose_name_plural = u'Scheduling'

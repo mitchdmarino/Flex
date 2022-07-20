@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django import forms
 
+
 from django.utils.safestring import mark_safe
 import calendar
 # from utils import Calendar
@@ -50,45 +51,61 @@ def routine_details(request, pk):
 def routine_edit(request, pk):
     routine = Routine.objects.get(pk=pk)
     if routine.user_id == request.user.id:
-        ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time', 'weight','reps', 'sets', 'distance', 'notes'), extra=1, 
-            widgets = {
-                'name': forms.TextInput(attrs={
-                    'class':'form-control form-control-md  ', 
-                    'style': 'width: 300px;',
-                    
-                }), 
-                'weight': forms.NumberInput(attrs={
-                    'class':'form-control   ', 
-                    'style': 'width: 150px;',
-                    
-                }), 
-                'reps': forms.NumberInput(attrs={
-                    'class':'form-control   ', 
-                    'style': 'width: 150px;',
-                    
-                }), 
-                'sets': forms.NumberInput(attrs={
-                    'class':'form-control   ', 
-                    'style': 'width: 150px;',
-                    
-                }), 
-                'distance': forms.NumberInput(attrs={
-                    'class':'form-control   ', 
-                    'style': 'width: 150px;',
-                    
-                }), 
-                'time': forms.TextInput(attrs={
-                    'class':'form-control  ', 
-                    'style': 'width: 300px;',
-                    'placeholder':'mm:ss',
-                    
-                }), 
-                'notes': forms.Textarea(attrs={
-                    'class':'form-control   ', 
-                    'style': 'width: 400px; height: 20px;',
-                    
-                }), 
-            })
+        if routine.type == 'Cardio':
+
+            ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time' , 'distance', 'notes'), extra=1, 
+                widgets = {
+                    'name': forms.TextInput(attrs={
+                        'class':'form-control form-control-md  ', 
+                        'style': 'width: 300px;',
+                        
+                    }), 
+                    'distance': forms.NumberInput(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 150px;',
+                        
+                    }), 
+                    'time': forms.TextInput(attrs={
+                        'class':'form-control  ', 
+                        'style': 'width: 300px;',
+                        'placeholder':'mm:ss',
+                        
+                    }), 
+                    'notes': forms.Textarea(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 400px; height: 20px;',
+                        
+                    })
+                })
+        else:
+            ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'weight','reps', 'sets', 'notes'), extra=1, 
+                widgets = {
+                    'name': forms.TextInput(attrs={
+                        'class':'form-control form-control-md  ', 
+                        'style': 'width: 300px;',
+                        
+                    }), 
+                    'weight': forms.NumberInput(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 150px;',
+                        
+                    }), 
+                    'reps': forms.NumberInput(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 150px;',
+                        
+                    }), 
+                    'sets': forms.NumberInput(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 150px;',
+                        
+                    }),
+                    'notes': forms.Textarea(attrs={
+                        'class':'form-control   ', 
+                        'style': 'width: 400px; height: 20px;',
+                        
+                    }), 
+                })
         if request.method == 'POST':
             form = RoutineForm(request.POST, instance=routine)
             formset = ExerciseFormset(request.POST, instance=routine)
@@ -212,10 +229,16 @@ def workout_details(request, pk):
     workout = Workout.objects.get(pk=pk)
     if workout.user.id != request.user.id:
             return redirect('calendar')
+    t1 = workout.day
+    t2 = date.today()
+    days_left = t1-t2
+
     context = {
         'workout': workout,
-        'routine': workout.routine
+        'routine': workout.routine,
+        'days':days_left.days
     }
+
     return render(request, 'workout/event_details.html', context)
 
 def complete_workout(request, pk):

@@ -9,6 +9,16 @@
 
 ## User Stories
 
+1. A user will be able to create an account and perform full CRUD actions on Workouts.
+
+1. A user can schedule workouts to be completed at a certain time, viewing past and future workouts on a calendar.
+
+1. A user can complete workouts and add notes (e.g. time elapsed, weight, comment)
+
+1. A user can make their workouts public and view/save other public workouts. 
+
+1. A user can see data showing their progress (weight, personal records, activity, etc)
+
 ## WireFrames
 ### Dashboard: User's personal Hub
 ![](./wireframes/Dashboard.png)

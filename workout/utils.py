@@ -18,7 +18,7 @@ class Calendar(HTMLCalendar):
 			color = 'yellow'
 			if workout.complete:
 				color = 'green'
-			d += f'<div style="background-color:{color}"> {workout.get_html_url} </div>'
+			d += f'<div style="border-radius:10%; text-align: center; background-color:{color}; margin:5px"> {workout.get_html_url} </div>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"

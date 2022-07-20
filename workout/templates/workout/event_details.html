@@ -2,7 +2,8 @@
 
 {% block content %}
 
-<a href="{% url 'complete_workout' workout.id%}"><button>Complete this workout</button></a>
+<p class="fs-3 text-center pt-5">You are scheduled to complete in {{days}} days. </p>
+<a href="{% url 'complete_workout' workout.id%}" class="d-block w-50 mx-auto text-decoration-none"><button class="btn btn-success d-block mx-auto text-white text-decoration-none">Complete this workout</button></a>
 
 <div class="">
     <h1 class="text-center my-4">{{routine.name}}</h1>
