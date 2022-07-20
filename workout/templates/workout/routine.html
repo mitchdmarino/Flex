@@ -1,18 +1,48 @@
 {% extends 'base.html' %}
 {% block content %}
+    <div class="">
         <h1 class="text-center my-4">{{routine.name}}</h1>
-        <h3 class="">{{routine.type}} Activity
+        <h3 class="text-center">{{routine.type}} Activity
             {%if routine.type == 'Cardio'%}
             🏃🏃‍♀️
             {%else%}
             💪
             {%endif%}
         </h3>
-        <p>{{routine.details}}</p>
-        <a href="edit"><button class="btn btn-info">Edit</button></a>
-        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
-            Delete
-          </button>
+        <p class="fs-5 text-center my-5">{{routine.details}}</p>   
+        <div class="mx-auto w-50 py-2 pb-5 d-flex justify-content-around">
+
+            <a href="edit"><button class="btn btn-info">Edit</button></a>
+            <button type="button" class="btn btn-danger d-inline-block text-right me-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Delete
+              </button>
+            </div>
+            
+    
+                 
+        <h3 class="text-center">Exercises</h3>
+        <div class='mx-auto text-left w-50'>
+            <hr></hr>
+        {%for exercise in routine.exercises.all%}
+            <div class="my-4">
+                <h4 class="">{{ exercise.name }}</h4>
+                {%if routine.type == 'Cardio'%}
+                    <p>Time: {{exercise.time}}</p>
+                    <p>Distance: {{exercise.distance}} meters</p>
+                    <p>Notes: {{exercise.notes}}</p>
+                {%else%}
+                    <p>Sets: {{exercise.sets}}</p>
+                    <p>Reps: {{exercise.reps}} </p>
+                    <p>Weight: {{exercise.weight}} lbs</p>
+                    <p>Notes: {{exercise.notes}}</p>
+                
+                {%endif%}
+                <hr></hr>
+            </div>
+            
+        {%endfor%}
+        </div>
+        
           <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -31,14 +61,6 @@
             </div>
             </div>
         </div>
-            
-        <h3>Exercises</h3>
-        <div class='mx-auto'>
-        {%for exercise in routine.exercises.all%}
-            
-                {{ exercise.name }}
-            
-        {%endfor%}
-        </div>
+    </div>
    
 {% endblock %}
