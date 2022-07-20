@@ -31,9 +31,30 @@ def test_edit_routine(new_user1):
     assert new_user1.routine_set.get(name="10k run")
     
 
+# test adding exerces to a user's routine
+
+def test_add_exercise(new_user1):
+    new_user1.routine_set.create(name="5k run", type= 'Cardio')
+    routine = new_user1.routine_set.get(name="5k run")
+    exercice = Exercise.objects.create(name="run 5 kilometers", time="10:00", distance="5000", routine=routine)
+    exercise = Exercise.objects.get(name="run 5 kilometers")
+    assert exercise.routine.id == routine.id
 
 
-@pytest.fixture
-def api_client():
-   from rest_framework.test import APIClient
-   return APIClient()
+# test scheduling a workout from a routine 
+
+def test_schedule_workout(new_user1):
+    new_user1.routine_set.create(name="5k run", type= 'Cardio')
+    routine = new_user1.routine_set.get(name="5k run")
+    activity = Workout.objects.create(user=new_user1, routine = routine, day="2022-07-07", start_time="12:26:00")
+    assert activity.routine.id == routine.id
+
+
+# test completing a workout 
+
+def test_complete_workout(new_user1):
+    new_user1.routine_set.create(name="5k run", type= 'Cardio')
+    routine = new_user1.routine_set.get(name="5k run")
+    activity = Workout.objects.create(user=new_user1, routine = routine, day="2022-07-07", start_time="12:26:00")
+    activity.complete = True
+    assert activity.complete
