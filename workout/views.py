@@ -207,3 +207,21 @@ def workout(request, pk=None):
 #         return redirect('calendar')
 #     return render(request, 'workout/event.html', {'form': form})
 
+@login_required
+def workout_details(request, pk):
+    workout = Workout.objects.get(pk=pk)
+    if workout.user.id != request.user.id:
+            return redirect('calendar')
+    context = {
+        'workout': workout,
+        'routine': workout.routine
+    }
+    return render(request, 'workout/event_details.html', context)
+
+def complete_workout(request, pk):
+    workout = Workout.objects.get(pk=pk)
+    if workout.user.id != request.user.id:
+        return redirect('calendar')
+    workout.complete = True
+    workout.save()
+    return redirect('calendar')

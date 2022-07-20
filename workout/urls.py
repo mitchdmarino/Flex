@@ -10,6 +10,8 @@ urlpatterns = [
     path('schedule/', views.CalendarView.as_view(), name='calendar'),
     path('event/new/', views.workout, name='schedule_new_workout'), 
     path('event/<int:pk>/edit/', views.workout, name='edit_workout'),
+    path('event/<int:pk>/', views.workout_details, name='workout_details'),
+    path('event/<int:pk>/complete', views.complete_workout, name="complete_workout")
     # path('routines/<int:pk>/schedule', views.workout_shortcut, name='routine_schedule')
 ]
 

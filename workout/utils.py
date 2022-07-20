@@ -15,7 +15,10 @@ class Calendar(HTMLCalendar):
 		workouts_per_day = workouts.filter(day__day=day, user_id=user.id)
 		d = ''
 		for workout in workouts_per_day:
-			d += f'<li> {workout.get_html_url} </li>'
+			color = 'black'
+			if workout.complete:
+				color = 'green'
+			d += f'<li style="color:{color}"> {workout.get_html_url} </li>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"

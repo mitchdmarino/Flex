@@ -33,7 +33,7 @@ class Workout(models.Model):
     complete = models.BooleanField(default=False)
     @property
     def get_html_url(self):
-        url = reverse('edit_workout', args=(self.id,))
+        url = reverse('workout_details', args=(self.id,))
         return f'<a href="{url}"> {self.routine.name} </a>'
     class Meta:
         verbose_name = u'Scheduling'
