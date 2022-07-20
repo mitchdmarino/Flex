@@ -194,3 +194,16 @@ def workout(request, pk=None):
         form.save()
         return redirect('calendar')
     return render(request, 'workout/event.html', {'form': form})
+
+# @login_required(login_url='/login/')
+# def workout_shortcut(request, pk):
+#     instance = Workout()
+#     form = WorkoutForm(request.POST or None, instance= instance)
+#     form.instance.routine= Routine.objects.get(id=pk)
+#     form.instance.user = request.user
+    
+#     if request.POST and form.is_valid():
+#         form.save()
+#         return redirect('calendar')
+#     return render(request, 'workout/event.html', {'form': form})
+

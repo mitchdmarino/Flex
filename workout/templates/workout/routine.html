@@ -13,6 +13,7 @@
         <div class="mx-auto w-50 py-2 pb-5 d-flex justify-content-around">
 
             <a href="edit"><button class="btn btn-info">Edit</button></a>
+            {% comment %} <a class="btn btn-info right" href="{% url 'routine_schedule' routine.id %}"> Schedule Workout </a> {% endcomment %}
             <button type="button" class="btn btn-danger d-inline-block text-right me-0" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Delete
               </button>
@@ -62,5 +63,6 @@
             </div>
         </div>
     </div>
+    
    
 {% endblock %}
