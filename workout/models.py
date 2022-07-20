@@ -48,7 +48,7 @@ class Exercise(models.Model):
     sets = models.IntegerField(blank=True ,default=0)
     reps = models.IntegerField(blank=True ,default=0)
     distance = models.IntegerField(blank=True ,default=0)
-    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True )
+    time = models.TimeField(auto_now=False, auto_now_add=False, blank=True, null=True)
     notes = models.CharField(max_length=250, default='')
     routine = models.ForeignKey('Routine', on_delete=models.CASCADE, related_name='exercises')
 

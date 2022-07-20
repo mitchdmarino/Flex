@@ -50,7 +50,45 @@ def routine_details(request, pk):
 def routine_edit(request, pk):
     routine = Routine.objects.get(pk=pk)
     if routine.user_id == request.user.id:
-        ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time', 'weight','reps', 'sets', 'distance', 'notes'), extra=1)
+        ExerciseFormset = inlineformset_factory(Routine, Exercise, fields =('name', 'time', 'weight','reps', 'sets', 'distance', 'notes'), extra=1, 
+            widgets = {
+                'name': forms.TextInput(attrs={
+                    'class':'form-control form-control-md  ', 
+                    'style': 'width: 300px;',
+                    
+                }), 
+                'weight': forms.NumberInput(attrs={
+                    'class':'form-control   ', 
+                    'style': 'width: 150px;',
+                    
+                }), 
+                'reps': forms.NumberInput(attrs={
+                    'class':'form-control   ', 
+                    'style': 'width: 150px;',
+                    
+                }), 
+                'sets': forms.NumberInput(attrs={
+                    'class':'form-control   ', 
+                    'style': 'width: 150px;',
+                    
+                }), 
+                'distance': forms.NumberInput(attrs={
+                    'class':'form-control   ', 
+                    'style': 'width: 150px;',
+                    
+                }), 
+                'time': forms.TimeInput(attrs={
+                    'class':'form-control  ', 
+                    'style': 'width: 300px;',
+                    'placeholder':'mm:ss',
+                    
+                }), 
+                'notes': forms.Textarea(attrs={
+                    'class':'form-control   ', 
+                    'style': 'width: 400px; height: 20px;',
+                    
+                }), 
+            })
         if request.method == 'POST':
             form = RoutineForm(request.POST, instance=routine)
             formset = ExerciseFormset(request.POST, instance=routine)
