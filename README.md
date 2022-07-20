@@ -1,5 +1,6 @@
 # Flex: A workout companion
-
+Create, Schedule, and Complete Workouts while tracking your fitness information
+![](./wireframes/app_calendar.png)
 ## Technologies
 
 * Django
